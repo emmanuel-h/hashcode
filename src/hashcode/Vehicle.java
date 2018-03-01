@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Vehicle {
+    private int id;
     private LinkedList<Ride> ridesDone;
     private LinkedList<Ride> ridesToDo;
     private int posR;
@@ -17,9 +18,10 @@ public class Vehicle {
         this.ridesToDo = new LinkedList<>();
     }
 
-    public Vehicle(int posR, int posC, int destR, int destC, int destStep) {
+    public Vehicle(int id, int posR, int posC, int destR, int destC, int destStep) {
         this.ridesDone = new LinkedList<>();
         this.ridesToDo = new LinkedList<>();
+        this.id = id;
         this.posR = posR;
         this.posC = posC;
         this.destR = destR;
@@ -27,9 +29,10 @@ public class Vehicle {
         this.destStep = destStep;
     }
 
-    public Vehicle(LinkedList<Ride> ridesDone, LinkedList<Ride> ridesToDo, int posR, int posC, int destR, int destC, int destStep) {
+    public Vehicle(LinkedList<Ride> ridesDone, LinkedList<Ride> ridesToDo, int id, int posR, int posC, int destR, int destC, int destStep) {
         this.ridesDone = ridesDone;
         this.ridesToDo = ridesToDo;
+        this.id = id;
         this.posR = posR;
         this.posC = posC;
         this.destR = destR;
@@ -59,6 +62,14 @@ public class Vehicle {
 
     public void addRideToDo(Ride ride){
         this.ridesToDo.addFirst(ride);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPosR() {

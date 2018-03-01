@@ -87,4 +87,20 @@ public class Ride {
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ride ride = (Ride) o;
+
+        if (startR != ride.startR) return false;
+        if (startC != ride.startC) return false;
+        if (stopR != ride.stopR) return false;
+        if (stopC != ride.stopC) return false;
+        if (start != ride.start) return false;
+        if (finish != ride.finish) return false;
+        return vehicle != null ? vehicle.equals(ride.vehicle) : ride.vehicle == null;
+    }
 }
