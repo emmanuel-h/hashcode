@@ -12,8 +12,10 @@ public class Main {
     public static int B;
     public static int T;
 
-    public static List<Ride> rides = new LinkedList<>();
-    public static List<RideList> rideListCollection = new LinkedList<>();
+    public static final int maxWeight = 10;
+
+    public static LinkedList<Ride> rides = new LinkedList<>();
+    public static LinkedList<RideList> rideListCollection = new LinkedList<>();
 
 
     public static void parse(File file) throws IOException{
@@ -44,6 +46,44 @@ public class Main {
     }
 
 
+    public static void algorithm(){
+        boolean end = false;
+        while(!end){
+            Ride ride = rides.pop();
+            int step = 0;
+            int duration = ride.getStart() + ride.timeToTravel();
+            LinkedList<Ride> tempRideList = new LinkedList<>();
+            tempRideList.addFirst(ride);
+            step += duration;
+            int maxWeight = 999999999;
+            Ride rideTemp = null;
+            for(Ride rideDest : rides){
+                if(!tempRideList.contains(rideDest)){
+                    int weight = rideDest.calculateWeight(step, ride.getStopC(), ride.getStopR());
+                    if(weight < maxWeight){
+                        maxWeight = weight;
+                        rideTemp = rideDest;
+                    }
+                }
+            }
+            if(null != rideTemp) {
+                tempRideList.addLast(rideTemp);
+                rides.remove(rideTemp);
+            }else{
+                rideListCollection.add(new RideList(tempRideList));
+            }
+            if(rides.isEmpty()){
+                end = true;
+            }
+        }
+    }
+
+
+    public static void sortRideByStartTime(){
+        rides.sort(Comparator.comparing(Ride::getStart));
+    }
+
+
     public static void main(String[] args) {
         File fileIn = new File("out/b_should_be_easy.in");
         File fileOut = new File("out/b_should_be_easy.out");
@@ -52,10 +92,15 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-
-    public static void sortRideByStartTime(){
-        rides.sort(Comparator.comparing(Ride::getStart));
+        System.out.println(rides.size());
+        sortRideByStartTime();
+        algorithm();
+        System.out.println(rideListCollection.size());
+        for(RideList list : rideListCollection){
+            for(Ride ride : list.getRideList()){
+                System.out.print(ride.getId() + " ");
+            }
+            System.out.println();
+        }
     }
 }
