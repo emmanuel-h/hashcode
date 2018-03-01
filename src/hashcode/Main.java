@@ -1,10 +1,7 @@
 package hashcode;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
 
@@ -15,7 +12,7 @@ public class Main {
     public static int B;
     public static int T;
 
-    public static List<Ride> rides = new ArrayList<>();
+    public static List<Ride> rides = new LinkedList<>();
     public static List<RideList> rideListCollection = new LinkedList<>();
 
 
@@ -47,7 +44,6 @@ public class Main {
     }
 
 
-
     public static void main(String[] args) {
         File fileIn = new File("out/b_should_be_easy.in");
         File fileOut = new File("out/b_should_be_easy.out");
@@ -56,5 +52,10 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public static void sortRideByStartTime(){
+        rides.sort(Comparator.comparing(Ride::getStart));
     }
 }

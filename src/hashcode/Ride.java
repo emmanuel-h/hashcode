@@ -88,4 +88,6 @@ public class Ride {
 
         return id == ride.getId();
     }
+
+
 }
