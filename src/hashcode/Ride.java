@@ -23,6 +23,23 @@ public class Ride {
         this.finish = finish;
     }
 
+    public int timeToTravel(){
+        return calculateDistance(startR, startC, stopR, stopC);
+    }
+
+    public int calculateWeight(int actualStep, int stopCPrev, int stopRPrev){
+        int res;
+        int distance = res = calculateDistance(startR, startC, stopRPrev, stopCPrev);
+        if(distance + actualStep < this.start){
+            res += this.start - (distance + actualStep)
+        }
+        return res;
+    }
+
+    private int calculateDistance(int startX, int startY, int stopX, int stopY){
+        return Math.abs(stopX-startX)+Math.abs(stopY-startY);
+    }
+
     public int getId() {
         return id;
     }

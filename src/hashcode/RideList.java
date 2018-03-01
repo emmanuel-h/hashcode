@@ -7,6 +7,10 @@ public class RideList {
     private List<Ride> rideList;
     private int score;
 
+    public RideList(){
+
+    }
+
     public RideList(List<Ride> rideList, int score) {
         this.rideList = rideList;
         this.score = score;
