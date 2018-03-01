@@ -79,8 +79,8 @@ public class Main {
                 for (Ride rideDest : rides) {
                     if (!tempRideList.contains(rideDest)) {
                         int weight = rideDest.calculateWeight(step, actualRide.getStopC(), actualRide.getStopR());
-                        System.out.println(weight);
                         if (weight < minWeight && ((rideDest.timeToTravel() + weight + step) < T)) {
+                            System.out.println(rideDest.timeToTravel() + weight + step +" "+T);
                             minWeight = weight;
                             rideTemp = rideDest;
                         }
@@ -91,7 +91,7 @@ public class Main {
                     tempRideList.addLast(rideTemp);
                     rides.remove(rideTemp);
                     actualRide = rideTemp;
-                    step += minWeight;
+                    step += minWeight + rideTemp.timeToTravel();
                 }else{
                     hasNext = false;
                     rideListCollection.add(new RideList(tempRideList));
