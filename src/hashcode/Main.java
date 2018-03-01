@@ -45,6 +45,20 @@ public class Main {
         bufferedReader.close();
     }
 
+    public static void out(File file) throws IOException{
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+        int size;
+        for(RideList rideList : rideListCollection) {
+            size = rideList.getRideList().size();
+            bufferedWriter.write(String.valueOf(size));
+            for(Ride ride : rideList.getRideList()){
+                bufferedWriter.write(" "+ride.getId());
+            }
+            bufferedWriter.write("\n");
+        }
+        bufferedWriter.close();
+    }
+
 
     public static void algorithm(){
         boolean end = false;
@@ -98,18 +112,17 @@ public class Main {
         File fileOut = new File("out/b_should_be_easy.out");
         try {
             parse(fileIn);
+            sortRideByStartTime();
+            algorithm();
+            for(RideList list : rideListCollection){
+                for(Ride ride : list.getRideList()){
+                    System.out.print(ride.getId() + " ");
+                }
+                System.out.println();
+            }
+            out(fileOut);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        System.out.println(rides.size());
-        sortRideByStartTime();
-        algorithm();
-        System.out.println(rideListCollection.size());
-        for(RideList list : rideListCollection){
-            for(Ride ride : list.getRideList()){
-                System.out.print(ride.getId() + " ");
-            }
-            System.out.println();
         }
     }
 }
