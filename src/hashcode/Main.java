@@ -78,7 +78,7 @@ public class Main {
                 Ride rideTemp = null;
                 for (Ride rideDest : rides) {
                     if (!tempRideList.contains(rideDest)) {
-                        int weight = rideDest.calculateWeight(step, actualRide.getStopC(), actualRide.getStopR());
+                        int weight = Math.abs(rideDest.calculateWeight(step, actualRide.getStopC(), actualRide.getStopR()));
                         if (weight < minWeight && ((rideDest.timeToTravel() + weight + step) < T)) {
                             minWeight = weight;
                             rideTemp = rideDest;
@@ -107,10 +107,18 @@ public class Main {
         rides.sort(Comparator.comparing(Ride::getStart));
     }
 
+    public static void sortByScore(){
+        for(RideList rideList : rideListCollection){
+            for(Ride ride : rideList.getRideList()){
+                rideList.setScore(rideList.getScore()+ride.timeToTravel());
+            }
+        }
+        rideListCollection.sort(Comparator.comparing(RideList::getScore));
+    }
 
     public static void main(String[] args) {
-        File fileIn = new File("out/e_high_bonus.in");
-        File fileOut = new File("out/e_high_bonus.out");
+        File fileIn = new File("out/c_no_hurry.in");
+        File fileOut = new File("out/c_no_hurry.out");
         try {
             parse(fileIn);
             sortRideByStartTime();
