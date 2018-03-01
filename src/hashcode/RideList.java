@@ -1,17 +1,18 @@
 package hashcode;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class RideList {
 
-    private List<Ride> rideList;
+    private LinkedList<Ride> rideList;
     private int score;
 
     public RideList(){
 
     }
 
-    public RideList(List<Ride> rideList) {
+    public RideList(LinkedList<Ride> rideList) {
         this.rideList = rideList;
     }
 
@@ -19,7 +20,7 @@ public class RideList {
         return rideList;
     }
 
-    public void setRideList(List<Ride> rideList) {
+    public void setRideList(LinkedList<Ride> rideList) {
         this.rideList = rideList;
     }
 

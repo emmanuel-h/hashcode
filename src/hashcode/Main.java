@@ -48,29 +48,38 @@ public class Main {
 
     public static void algorithm(){
         boolean end = false;
+        Ride actualRide;
         while(!end){
             Ride ride = rides.pop();
+            actualRide = ride;
             int step = 0;
             int duration = ride.getStart() + ride.timeToTravel();
             LinkedList<Ride> tempRideList = new LinkedList<>();
             tempRideList.addFirst(ride);
+            boolean hasNext = true;
             step += duration;
-            int maxWeight = 999999999;
-            Ride rideTemp = null;
-            for(Ride rideDest : rides){
-                if(!tempRideList.contains(rideDest)){
-                    int weight = rideDest.calculateWeight(step, ride.getStopC(), ride.getStopR());
-                    if(weight < maxWeight){
-                        maxWeight = weight;
-                        rideTemp = rideDest;
+            while(hasNext) {
+                int minWeight = 999999999;
+                Ride rideTemp = null;
+                for (Ride rideDest : rides) {
+                    if (!tempRideList.contains(rideDest)) {
+                        int weight = rideDest.calculateWeight(step, actualRide.getStopC(), actualRide.getStopR());
+                        if (weight < minWeight && ((rideDest.timeToTravel() + weight + step) < T)) {
+                            minWeight = weight;
+                            rideTemp = rideDest;
+                        }
                     }
                 }
-            }
-            if(null != rideTemp) {
-                tempRideList.addLast(rideTemp);
-                rides.remove(rideTemp);
-            }else{
-                rideListCollection.add(new RideList(tempRideList));
+
+                if(null != rideTemp) {
+                    tempRideList.addLast(rideTemp);
+                    rides.remove(rideTemp);
+                    actualRide = rideTemp;
+                    step += minWeight;
+                }else{
+                    hasNext = false;
+                    rideListCollection.add(new RideList(tempRideList));
+                }
             }
             if(rides.isEmpty()){
                 end = true;
