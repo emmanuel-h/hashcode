@@ -1,6 +1,7 @@
 package hashcode;
 
 public class Ride {
+    private int id;
     private int startR;
     private int startC;
     private int stopR;
@@ -13,7 +14,8 @@ public class Ride {
 
     }
 
-    public Ride(int startR, int startC, int stopR, int stopC, int start, int finish) {
+    public Ride(int id, int startR, int startC, int stopR, int stopC, int start, int finish) {
+        this.id = id;
         this.startR = startR;
         this.startC = startC;
         this.stopR = stopR;
@@ -22,7 +24,8 @@ public class Ride {
         this.finish = finish;
     }
 
-    public Ride(int startR, int startC, int stopR, int stopC, int start, int finish, Vehicle vehicle) {
+    public Ride(int id, int startR, int startC, int stopR, int stopC, int start, int finish, Vehicle vehicle) {
+        this.id = id;
         this.startR = startR;
         this.startC = startC;
         this.stopR = stopR;
@@ -30,6 +33,14 @@ public class Ride {
         this.start = start;
         this.finish = finish;
         this.vehicle = vehicle;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getStartR() {
@@ -95,12 +106,6 @@ public class Ride {
 
         Ride ride = (Ride) o;
 
-        if (startR != ride.startR) return false;
-        if (startC != ride.startC) return false;
-        if (stopR != ride.stopR) return false;
-        if (stopC != ride.stopC) return false;
-        if (start != ride.start) return false;
-        if (finish != ride.finish) return false;
-        return vehicle != null ? vehicle.equals(ride.vehicle) : ride.vehicle == null;
+        return id == ride.getId();
     }
 }

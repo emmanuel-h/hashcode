@@ -111,4 +111,24 @@ public class Vehicle {
     public void setDestStep(int destStep) {
         this.destStep = destStep;
     }
+
+    public String toString(){
+        int nbRide = ridesDone.size();
+        StringBuilder sb = new StringBuilder();
+        sb.append(nbRide);
+        for(int i = 0; i < nbRide; i++){
+            sb.append(" " + ridesDone.get(i).getId());
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Vehicle vehicle = (Vehicle) o;
+
+        return id == vehicle.id;
+    }
 }
