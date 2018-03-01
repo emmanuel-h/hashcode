@@ -113,7 +113,7 @@ public class Main {
                 rideList.setScore(rideList.getScore()+ride.timeToTravel());
             }
         }
-        rideListCollection.sort(Comparator.comparing(RideList::getScore));
+        rideListCollection.sort(Comparator.comparing(RideList::getScore).reversed());
     }
 
     public static void main(String[] args) {
@@ -123,12 +123,7 @@ public class Main {
             parse(fileIn);
             sortRideByStartTime();
             algorithm();
-            for(RideList list : rideListCollection){
-                for(Ride ride : list.getRideList()){
-                    System.out.print(ride.getId() + " ");
-                }
-                System.out.println();
-            }
+            sortByScore();
             out(fileOut);
         } catch (IOException e) {
             e.printStackTrace();
