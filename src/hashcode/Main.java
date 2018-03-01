@@ -80,7 +80,6 @@ public class Main {
                     if (!tempRideList.contains(rideDest)) {
                         int weight = rideDest.calculateWeight(step, actualRide.getStopC(), actualRide.getStopR());
                         if (weight < minWeight && ((rideDest.timeToTravel() + weight + step) < T)) {
-                            System.out.println(rideDest.timeToTravel() + weight + step +" "+T);
                             minWeight = weight;
                             rideTemp = rideDest;
                         }
@@ -110,8 +109,8 @@ public class Main {
 
 
     public static void main(String[] args) {
-        File fileIn = new File("out/b_should_be_easy.in");
-        File fileOut = new File("out/b_should_be_easy.out");
+        File fileIn = new File("out/e_high_bonus.in");
+        File fileOut = new File("out/e_high_bonus.out");
         try {
             parse(fileIn);
             sortRideByStartTime();

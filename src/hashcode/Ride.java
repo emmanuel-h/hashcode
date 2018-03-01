@@ -33,6 +33,9 @@ public class Ride {
         if(distance + actualStep < this.start){
             res += this.start - (distance + actualStep);
         }
+        if(distance + actualStep == start){
+            res-=10000;
+        }
         return res;
     }
 
