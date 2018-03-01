@@ -31,7 +31,7 @@ public class Ride {
         int res;
         int distance = res = calculateDistance(startR, startC, stopRPrev, stopCPrev);
         if(distance + actualStep < this.start){
-            res += this.start - (distance + actualStep)
+            res += this.start - (distance + actualStep);
         }
         return res;
     }
