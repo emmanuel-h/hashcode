@@ -12,8 +12,6 @@ public class Main {
     public static int B;
     public static int T;
 
-    public static final int maxWeight = 10;
-
     public static LinkedList<Ride> rides = new LinkedList<>();
     public static LinkedList<RideList> rideListCollection = new LinkedList<>();
 
@@ -52,9 +50,12 @@ public class Main {
             size = rideList.getRideList().size();
             bufferedWriter.write(String.valueOf(size));
             for(Ride ride : rideList.getRideList()){
-                bufferedWriter.write(" "+ride.getId());
+                bufferedWriter.write(" "+String.valueOf(ride.getId()));
             }
             bufferedWriter.write("\n");
+        }
+        for(int i = rideListCollection.size() ; i<F ; i++){
+            bufferedWriter.write("0\n");
         }
         bufferedWriter.close();
     }
@@ -78,6 +79,7 @@ public class Main {
                 for (Ride rideDest : rides) {
                     if (!tempRideList.contains(rideDest)) {
                         int weight = rideDest.calculateWeight(step, actualRide.getStopC(), actualRide.getStopR());
+                        System.out.println(weight);
                         if (weight < minWeight && ((rideDest.timeToTravel() + weight + step) < T)) {
                             minWeight = weight;
                             rideTemp = rideDest;

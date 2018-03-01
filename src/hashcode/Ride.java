@@ -28,8 +28,8 @@ public class Ride {
     }
 
     public int calculateWeight(int actualStep, int stopCPrev, int stopRPrev){
-        int res;
-        int distance = res = calculateDistance(startR, startC, stopRPrev, stopCPrev);
+        int distance = calculateDistance(startR, startC, stopRPrev, stopCPrev);
+        int res = distance;
         if(distance + actualStep < this.start){
             res += this.start - (distance + actualStep);
         }
