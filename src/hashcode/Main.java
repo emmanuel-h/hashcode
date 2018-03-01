@@ -31,14 +31,16 @@ public class Main {
         N = Integer.parseInt(stringTokenizer.nextToken());
         B = Integer.parseInt(stringTokenizer.nextToken());
         T = Integer.parseInt(stringTokenizer.nextToken());
+        int i = 0;
         while((currentLine = bufferedReader.readLine()) != null) {
             stringTokenizer = new StringTokenizer(currentLine, delim);
-            rides.add(new Ride(Integer.parseInt(stringTokenizer.nextToken()),
+            rides.add(new Ride(i, Integer.parseInt(stringTokenizer.nextToken()),
                     Integer.parseInt(stringTokenizer.nextToken()),
                     Integer.parseInt(stringTokenizer.nextToken()),
                     Integer.parseInt(stringTokenizer.nextToken()),
                     Integer.parseInt(stringTokenizer.nextToken()),
                     Integer.parseInt(stringTokenizer.nextToken())));
+            i++;
         }
         bufferedReader.close();
     }
