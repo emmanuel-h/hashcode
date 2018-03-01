@@ -8,7 +8,6 @@ public class Ride {
     private int stopC;
     private int start;
     private int finish;
-    private Vehicle vehicle;
 
     public Ride(){
 
@@ -22,17 +21,6 @@ public class Ride {
         this.stopC = stopC;
         this.start = start;
         this.finish = finish;
-    }
-
-    public Ride(int id, int startR, int startC, int stopR, int stopC, int start, int finish, Vehicle vehicle) {
-        this.id = id;
-        this.startR = startR;
-        this.startC = startC;
-        this.stopR = stopR;
-        this.stopC = stopC;
-        this.start = start;
-        this.finish = finish;
-        this.vehicle = vehicle;
     }
 
     public int getId() {
@@ -89,14 +77,6 @@ public class Ride {
 
     public void setFinish(int finish) {
         this.finish = finish;
-    }
-
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
     }
 
     @Override
