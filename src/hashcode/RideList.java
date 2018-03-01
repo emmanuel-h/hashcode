@@ -11,9 +11,8 @@ public class RideList {
 
     }
 
-    public RideList(List<Ride> rideList, int score) {
+    public RideList(List<Ride> rideList) {
         this.rideList = rideList;
-        this.score = score;
     }
 
     public List<Ride> getRideList() {
