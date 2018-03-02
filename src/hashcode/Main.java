@@ -11,6 +11,10 @@ public class Main {
     public static int N;
     public static int B;
     public static int T;
+    public static final String b = "b_should_be_easy";
+    public static final String c = "c_no_hurry";
+    public static final String d = "d_metropolis";
+    public static final String e = "e_high_bonus";
 
     public static LinkedList<Ride> rides = new LinkedList<>();
     public static LinkedList<RideList> rideListCollection = new LinkedList<>();
@@ -79,7 +83,7 @@ public class Main {
                 for (Ride rideDest : rides) {
                     if (!tempRideList.contains(rideDest)) {
                         int weight = Math.abs(rideDest.calculateWeight(step, actualRide.getStopC(), actualRide.getStopR()));
-                        if (weight < minWeight && ((rideDest.timeToTravel() + weight + step) < T)) {
+                        if (weight < minWeight && ((rideDest.timeToTravel() + weight + step) < T) && rideDest.timeToTravel() + weight + step < rideDest.getFinish()) {
                             minWeight = weight;
                             rideTemp = rideDest;
                         }
@@ -117,8 +121,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        File fileIn = new File("out/c_no_hurry.in");
-        File fileOut = new File("out/c_no_hurry.out");
+        File fileIn = new File("out/"+e+".in");
+        File fileOut = new File("out/"+e+".out");
         try {
             parse(fileIn);
             sortRideByStartTime();
