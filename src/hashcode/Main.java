@@ -11,10 +11,7 @@ public class Main {
     public static int N;
     public static int B;
     public static int T;
-    public static final String b = "b_should_be_easy";
-    public static final String c = "c_no_hurry";
-    public static final String d = "d_metropolis";
-    public static final String e = "e_high_bonus";
+    public static final String[] files = {"b_should_be_easy", "c_no_hurry", "d_metropolis", "e_high_bonus"};
 
     public static LinkedList<Ride> rides = new LinkedList<>();
     public static LinkedList<RideList> rideListCollection = new LinkedList<>();
@@ -121,16 +118,19 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        File fileIn = new File("out/"+e+".in");
-        File fileOut = new File("out/"+e+".out");
-        try {
-            parse(fileIn);
-            sortRideByStartTime();
-            algorithm();
-            sortByScore();
-            out(fileOut);
-        } catch (IOException e) {
-            e.printStackTrace();
+        for(int i = 0 ; i<files.length ; i++) {
+            File fileIn = new File("out/" + files[i] + ".in");
+            File fileOut = new File("out/" + files[i] + ".out");
+            try {
+                parse(fileIn);
+                sortRideByStartTime();
+                algorithm();
+                sortByScore();
+                out(fileOut);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(files[i]+" done");
         }
     }
 }
